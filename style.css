@@ -1,0 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(117, 65, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.grid {
+  margin-top: 150px;
+  height: 300px;
+  width: 660px;
+  border: 1px solid black;
+  position: relative;
+  background-color: rgb(0, 83, 42);
+}
+
+.block {
+  height: 30px;
+  width: 120px;
+  position: absolute;
+  background-color: rgb(250, 137, 0);
+  border: 1px solid black;
+}
+
+.user {
+  height: 30px;
+  width: 120px;
+  position: absolute;
+  background-color: rgb(250, 0, 167);
+  border: 1px solid black;
+}
+
+.ball {
+  height: 25px;
+  width: 25px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: blue;
+  position: absolute;
+  z-index: 2;
+}
+
+.score {
+  position: fixed;
+  text-align: center;
+  top: 50px;
+  width: 200px;
+  font-size: 30px;
+  color: bisque;
+}
+
+.rules {
+  position: fixed;
+  left: 100px;
+  top: 100px;
+  width: 200px;
+  font-size: 20px;
+  color: bisque;
+}
