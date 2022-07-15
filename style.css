@@ -1,64 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  background-color: rgb(117, 65, 0);
+  font-family: VT323;
+  background-image: url(./img/background.png);
   display: flex;
   justify-content: center;
   align-items: center;
-
+  position: relative;
 }
 
 .grid {
-  margin-top: 150px;
-  height: 300px;
-  width: 660px;
-  border: 1px solid black;
+  margin-top: 10px;
+  height: 600px;
+  width: 1268px;
+  border: 4px solid black;
   position: relative;
-  background-color: rgb(0, 83, 42);
+  background-image: url(./img/grid.jpg);
+  z-index: -1;
 }
 
 .block {
-  height: 30px;
-  width: 120px;
+  height: 60px;
+  width: 240px;
   position: absolute;
-  background-color: rgb(250, 137, 0);
-  border: 1px solid black;
+  border: 4px solid black;
+  background-image: url(./img/block.png);
 }
 
 .user {
-  height: 30px;
+  height: 40px;
   width: 120px;
   position: absolute;
-  background-color: rgb(250, 0, 167);
-  border: 1px solid black;
+  background-image: url(./img/user.jpg);
+  border: 4px solid black;
 }
 
+
 .ball {
-  height: 25px;
-  width: 25px;
-  border: 1px solid black;
+  height: 45px;
+  width: 45px;
+  border: 4px solid black;
   border-radius: 50%;
-  background-color: blue;
+  background-image: url(./img/ball.png);
   position: absolute;
   z-index: 2;
 }
 
 .score {
-  position: fixed;
+  position: absolute;
   text-align: center;
-  top: 50px;
-  width: 200px;
+  bottom: 200px;
+  font-size: 70px;
+  color: bisque;
+  z-index: 2;
+}
+
+.rules {
+  position: absolute;
+  bottom: -80px;
+  left: 330px;
+  width: 400px;
   font-size: 30px;
   color: bisque;
 }
 
-.rules {
-  position: fixed;
-  left: 100px;
-  top: 100px;
-  width: 200px;
-  font-size: 20px;
+.btn {
+  position: absolute;
+  text-align: center;
+  padding: 0px 15px;
+  bottom: -100px;
+  font-size: 70px;
   color: bisque;
+  border: 4px solid black;
+  background-image: url(./img/btn.jpg);
+  cursor: pointer;
+}
+
+.btn:active{
+  color:greenyellow
+}
+
+.btn:disabled {
+  opacity: 0.3;
 }

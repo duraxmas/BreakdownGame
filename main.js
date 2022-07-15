@@ -1,27 +1,32 @@
 const grid = document.querySelector(".grid");
-const gridWidth = 660;
-const gridHeight = 300;
+const gridWidth = 1268;
+const gridHeight = 600;
 
 const scoreElem = document.querySelector(".score");
 let score = 0;
 let finish = false;
 
-const blockWidth = 120;// same as user
-const blockHeight = 30;// --//--
+const btn = document.querySelector(".btn")
 
-const ballHeight = 25;
-const ballWidth = 25;
+const blockWidth = 240;
+const blockHeight = 60;
+
+const userWidth = 120;
+const userHeight = 40;
+
+const ballHeight = 45;
+const ballWidth = 45;
 
 let timerId;
-let moveSpeed = 1;
+let moveSpeed = 15;
 
 let xDirection = 2;
 let yDirection = 2;
 
-const startUserPosition = [270, 10]
+const startUserPosition = [580, 10]
 let currentUserPosition = startUserPosition;
 
-const startBallPosition = [315, 60]
+const startBallPosition = [615, 60]
 let ballCurrentPosition = startBallPosition;
 
 class Block {
@@ -33,41 +38,22 @@ class Block {
   }
 }
 
-const blocksDefault = [
-  new Block(10, 220),
-  new Block(140, 220),
-  new Block(270, 220),
-  new Block(400, 220),
-  new Block(530, 220),
-  new Block(10, 260),
-  new Block(140, 260),
-  new Block(270, 260),
-  new Block(400, 260),
-  new Block(530, 260),
-  new Block(10, 180),
-  new Block(140, 180),
-  new Block(270, 180),
-  new Block(400, 180),
-  new Block(530, 180),
-]
-
-
 let blocks = [
-  new Block(10, 220),
-  new Block(140, 220),
-  new Block(270, 220),
-  new Block(400, 220),
-  new Block(530, 220),
-  new Block(10, 260),
-  new Block(140, 260),
-  new Block(270, 260),
-  new Block(400, 260),
-  new Block(530, 260),
-  new Block(10, 180),
-  new Block(140, 180),
-  new Block(270, 180),
-  new Block(400, 180),
-  new Block(530, 180),
+  new Block(10, 530),
+  new Block(260, 530),
+  new Block(510, 530),
+  new Block(760, 530),
+  new Block(1010, 530),
+  new Block(10, 460),
+  new Block(260, 460),
+  new Block(510, 460),
+  new Block(760, 460),
+  new Block(1010, 460),
+  new Block(10, 390),
+  new Block(260, 390),
+  new Block(510, 390),
+  new Block(760, 390),
+  new Block(1010, 390),
 ]
 
 function addBlocks() {
@@ -96,13 +82,13 @@ function moveUser(event) {
   switch (event.key) {
     case "ArrowLeft":
       if (currentUserPosition[0] > 10) {
-        currentUserPosition[0] -= 10;
+        currentUserPosition[0] -= 15;
         drawUserPosition()
       }
       break;
     case "ArrowRight":
-      if (currentUserPosition[0] < gridWidth - 10 - blockWidth) {
-        currentUserPosition[0] += 10;
+      if (currentUserPosition[0] < gridWidth - 10 - userWidth) {
+        currentUserPosition[0] += 15;
         drawUserPosition()
       }
       break;
@@ -128,7 +114,12 @@ function moveBall() {
   checkForCollisions();
 }
 
-timerId = setInterval(moveBall, moveSpeed);
+btn.addEventListener("click", startGame)
+
+function startGame() {
+  btn.disabled = true;
+  timerId = setInterval(moveBall, moveSpeed);
+}
 
 function checkForCollisions() {
 
@@ -141,16 +132,15 @@ function checkForCollisions() {
     ) {
       const allBlocks = Array.from(document.querySelectorAll(".block"));
       allBlocks[item].className = "";
-      blocks.splice(item, 1);
+      allBlocks.splice(item, 1);
       changeDirection()
       score++
       scoreElem.innerHTML = `Score: ` + score;
 
-      if (blocks.length == 0) {
+      if (allBlocks.length == 0) {
         scoreElem.innerHTML = "U WIN";
         clearInterval(timerId);
         document.removeEventListener("keydown", moveUser);
-        document.addEventListener("keydown", restartGame)
       }
     }
   }
@@ -159,7 +149,6 @@ function checkForCollisions() {
     scoreElem.innerHTML = "U LOOOOSER";
     clearInterval(timerId);
     document.removeEventListener("keydown", moveUser)
-    document.addEventListener("keydown", restartGame)
   }
 
   if (
@@ -172,8 +161,8 @@ function checkForCollisions() {
 
   if (
     (ballCurrentPosition[0] > currentUserPosition[0] &&
-      ballCurrentPosition[0] < currentUserPosition[0] + blockWidth) &&
-    (ballCurrentPosition[1] < currentUserPosition[1] + blockHeight &&
+      ballCurrentPosition[0] < currentUserPosition[0] + userWidth) &&
+    (ballCurrentPosition[1] < currentUserPosition[1] + userHeight &&
       ballCurrentPosition[1] > currentUserPosition[1])
   ) {
     changeDirection()
@@ -199,29 +188,6 @@ function changeDirection() {
   }
 }
 
-//RESTART
-// function restartGame(event) {
-//   if (event.key === "ArrowDown") {
-//     resetGame();
-//     drowBallPosition();
-//     timerId = setInterval(moveBall, moveSpeed);
-//   }
-// }
-
-// function placeBallToFuckingCenter() {
-//   ball.style.left = startBallPosition[0] + "px"
-// }
-
-// function resetGame() {
-//   scoreElem.innerHTML = "Score: 0"
-//   ballCurrentPosition = startBallPosition;
-//   xDirection = 2;
-//   yDirection = 2;
-//   blocks = JSON.parse(JSON.stringify(blocksDefault));
-//   Array.from(grid.querySelectorAll(".block")).map(block => block.remove())
-//   addBlocks()
-
-// }
 
 
 
