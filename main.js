@@ -1,6 +1,8 @@
 const grid = document.querySelector(".grid");
 const scoreElem = document.querySelector(".score");
-const btn = document.querySelector(".btn")
+const btn = document.querySelector(".btn");
+const speedSlider = document.querySelector(".slider");
+const sliderTextElem = document.querySelector(".slider-text")
 
 const gridWidth = 1268;
 const gridHeight = 600;
@@ -14,6 +16,9 @@ const ballWidth = 45;
 let score = 0;
 let timerId;
 let moveSpeed = 15;
+
+let speedScaleActive = true;
+setInterval(checkSpeedSlider, 150);
 
 let xDirection = -2;
 let yDirection = 2;
@@ -188,7 +193,8 @@ function startGame() {
   btn.innerText = "PAUSE"
   btn.addEventListener("click", pauseGame);
   timerId = setInterval(moveBall, moveSpeed);
-  scoreElem.innerHTML = `Score: ${score}`
+  scoreElem.innerHTML = `Score: ${score}`;
+  speedScaleActive = false;
 }
 
 btn.addEventListener("click", startGame);
@@ -198,7 +204,8 @@ function pauseGame() {
   clearInterval(timerId);
   btn.removeEventListener("click", pauseGame);
   btn.addEventListener("click", resumeGame);
-  btn.innerText = "RESUME"
+  btn.innerText = "RESUME";
+  speedScaleActive = true;
 }
 
 //resumeGame
@@ -206,14 +213,16 @@ function resumeGame() {
   timerId = setInterval(moveBall, moveSpeed);
   btn.removeEventListener("click", resumeGame);
   btn.addEventListener("click", pauseGame);
-  btn.innerText = "PAUSE"
+  btn.innerText = "PAUSE";
+  speedScaleActive = false;
 }
 
 //finishGame
 function finishGame() {
   btn.innerText = "RESET"
   btn.removeEventListener("click", pauseGame);
-  btn.addEventListener("click", resetGame)
+  btn.addEventListener("click", resetGame);
+  speedScaleActive = true;
 }
 
 //reset game 
@@ -237,6 +246,34 @@ function resetGame() {
   btn.removeEventListener("click", resetGame);
   btn.addEventListener("click", startGame);
   btn.innerText = "START"
+}
+
+//ball speed scale checker
+function checkSpeedSlider() {
+  speedScaleActive ? speedSlider.disabled = false : speedSlider.disabled = true;
+
+  switch (speedSlider.value) {
+    case "1":
+      sliderTextElem.innerHTML = `Difficulty: CHILL`
+      moveSpeed = 30;
+      break;
+    case "2":
+      sliderTextElem.innerHTML = `Difficulty: WITH BEER`
+      moveSpeed = 25;
+      break;
+    case "3":
+      sliderTextElem.innerHTML = `Difficulty: FOR FUN`
+      moveSpeed = 20;
+      break;
+    case "4":
+      sliderTextElem.innerHTML = `Difficulty: TRYHARD`
+      moveSpeed = 15;
+      break;
+    case "5":
+      sliderTextElem.innerHTML = `Difficulty: DANGER`
+      moveSpeed = 10;
+      break;
+  }
 }
 
 

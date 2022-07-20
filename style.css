@@ -8,9 +8,12 @@ body {
   font-family: VT323;
   background-image: url(./img/background.png);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  font-size: 30px;
+  color: bisque;
 }
 
 .grid {
@@ -21,6 +24,13 @@ body {
   position: relative;
   background-image: url(./img/grid.jpg);
   z-index: -1;
+}
+
+.bottom {
+  width: 1268px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .block {
@@ -60,19 +70,12 @@ body {
 }
 
 .rules {
-  position: absolute;
-  bottom: -80px;
-  left: 330px;
-  width: 400px;
-  font-size: 30px;
-  color: bisque;
+  width: 300px;
 }
 
 .btn {
-  position: absolute;
   text-align: center;
   padding: 0px 15px;
-  bottom: -100px;
   font-size: 70px;
   color: bisque;
   border: 4px solid black;
@@ -80,10 +83,54 @@ body {
   cursor: pointer;
 }
 
-.btn:active{
-  color:greenyellow
+.btn:active {
+  color: greenyellow
 }
 
 .btn:disabled {
   opacity: 0.3;
+}
+
+.speed-scale {
+  width: 300px;
+}
+
+.slider-text {
+  font-size: 37px;
+  text-align: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  background-image: url(./img/grid.jpg);
+  outline: none;
+  /* opacity: 0.7; */
+  /* -webkit-transition: .2s;
+  transition: opacity .2s; */
+}
+
+/* .slider:hover {
+  opacity: 1;
+} */
+
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background-image: url(./img/user.jpg);
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background-image: url(./img/user.jpg);
+  border: 2px solid black;
+  cursor: pointer;
 }
